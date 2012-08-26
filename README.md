@@ -1,8 +1,8 @@
 # jsguid #
 
-Description: generates guids
-License: BSD (see below)
-Author: Nicholas Cloud
+- Description: generates guids
+- License: BSD (see below)
+- Author: Nicholas Cloud
 
 ## Prerequisites ##
 
