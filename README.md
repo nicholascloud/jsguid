@@ -1,0 +1,3 @@
+# jsguid #
+
+Generates guids

@@ -1,0 +1,16 @@
+{
+  "name": "jsguid",
+  "version": "1.0.0",
+  "description": "creates guids",
+  "main": "jsguid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "guid",
+    "mono"
+  ],
+  "author": "Nicholas Cloud",
+  "license": "BSD"
+}
