@@ -1,15 +1,18 @@
+var path = require('path');
+
 desc('Default task');
 task('default', ['help'], function (params) {
 });
 
 desc('Help');
 task('help', [], function (params) {
-  console.log('use: `var jsguid = require("jsguid");`');
+  console.log('Run `jake -T` to see all jake tasks.');
 });
 
 desc('Run unit tests');
 task('test', [], function (params) {
-  jake.exec(['./node_modules/.bin/mocha -u tdd'], function () {
+  var cmd = path.join('.', 'node_modules', '.bin', 'mocha');
+  jake.exec([cmd + ' -u tdd'], function () {
     console.log('All tests completed');
     complete();
   }, {printStdout: true});
@@ -18,7 +21,9 @@ task('test', [], function (params) {
 desc('Compiles guidgen.exe in lib folder');
 task('compile', [], function (params) {
   jake.mkdirP('./bin');
-  jake.exec(['gmcs ./lib/guidgen.cs -out:./bin/guidgen.exe'], function () {
+  var source = path.join('.', 'lib', 'guidgen.cs');
+  var dest = path.join('.', 'bin', 'guidgen.exe');
+  jake.exec(['gmcs ' + source + ' -out:' + dest], function () {
     console.log('guidgen.exe compiled');
     complete();
   }, {printStdout: true, printStderr: true});
