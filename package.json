@@ -2,7 +2,7 @@
   "name": "jsguid",
   "version": "1.0.0",
   "description": "creates guids",
-  "dependencies": {
+  "devDependencies": {
     "jake": ">= 0.3.14",
     "mocha": ">= 1.4.0",
     "chai": ">= 1.2.0"

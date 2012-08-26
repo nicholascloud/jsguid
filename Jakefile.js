@@ -17,7 +17,8 @@ task('test', [], function (params) {
 
 desc('Compiles guidgen.exe in lib folder');
 task('compile', [], function (params) {
-  jake.exec(['gmcs ./lib/guidgen.cs'], function () {
+  jake.mkdirP('./bin');
+  jake.exec(['gmcs ./lib/guidgen.cs -out:./bin/guidgen.exe'], function () {
     console.log('guidgen.exe compiled');
     complete();
   }, {printStdout: true, printStderr: true});
