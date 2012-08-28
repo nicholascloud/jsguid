@@ -8,6 +8,8 @@
 
 Mono with `gmcs` compiler.  This should probably be configurable at some point.
 
+Run the `jake build` task before using the module to ensure that C# code has been compiled.
+
 ## Usage ##
 
 ```javascript
