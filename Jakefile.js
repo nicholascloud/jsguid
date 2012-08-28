@@ -51,8 +51,8 @@ task('compile', [], function (params) {
     console.log('guidgen.exe compiled');
     complete();
   }, {printStdout: true, printStderr: true});
-});
+}, true);
 
 desc('Builds the project');
-task('build', ['test', 'compile'], function () {
+task('build', ['compile', 'test'], function () {
 });
