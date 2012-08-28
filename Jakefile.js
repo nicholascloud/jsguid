@@ -2,12 +2,8 @@ var path = require('path'),
   fs = require('fs');
 
 desc('Default task');
-task('default', ['help'], function (params) {
-});
-
-desc('Help');
-task('help', [], function (params) {
-  console.log('Run `jake -T` to see all jake tasks.');
+task('default', [], function (params) {
+  jake.exec(['jake -T'], function () {}, {printStdout: true});
 });
 
 desc('Run unit tests');

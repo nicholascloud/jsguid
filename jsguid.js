@@ -34,8 +34,9 @@ module.exports = function (howMany, callback) {
         return callback(stderr);
       }
       if (howMany === 1) {
-        callback(null, stdout.trim());
+        return callback(null, stdout.trim());
       }
+      callback(null, stdout.trim().split('\n'));
     });
   });
 };

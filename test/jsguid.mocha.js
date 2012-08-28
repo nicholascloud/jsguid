@@ -13,20 +13,43 @@ suite('jsguid', function () {
     jsguid(function (err, guid) {
       assert.isNull(err);
       assert.isNotNull(guid);
+      assert.isTrue(typeof guid === 'string');
       assert.isTrue(GUID_REGEX.test(guid));
       done();
     });
   });
 
+  test('should return single guid for count 1', function (done) {
+    jsguid(1, function (err, guid) {
+      assert.isNull(err);
+      assert.isNotNull(guid);
+      assert.isTrue(typeof guid === 'string');
+      assert.isTrue(GUID_REGEX.test(guid));
+      done(); 
+    });
+  });
+
   test('should return correct number of guids for numeric argument', function (done) {
-    var i = 1;
-    for (i; i <= 10; i++) {
-      jsguid(i, function (err, output) {
-        var actual = output.split('\n');
-        assert.equal(i, actual.length);
+    function runTest(current, max, callback) {
+      jsguid(current, function (err, output) {
+        if (err) {
+          return callback(err);
+        }
+        assert.instanceOf(output, Array);
+        assert.equal(current, output.length);
+        output.forEach(function (guid) {
+          assert.isTrue(GUID_REGEX.test(guid));
+        });
+        if (current <= max) {
+          return runTest(current + 1, max, callback);
+        }
+        return callback(null);
       });
     }
-    done();
+    runTest(2, 10, function (err) {
+      assert.isNull(err);
+      done();
+    });
   });
 
   test('should return empty string when zero specified', function (done) {

@@ -13,12 +13,28 @@ Mono with `gmcs` compiler.  This should probably be configurable at some point.
 ```javascript
 var jsguid = require('jsguid');
 
+//get single guid
 jsguid(function (err, guid) {
   if (err) {
     console.log('BAD! ' + err);
     return;
   }
+
+  //guid returned as a string
   console.log(guid);
+});
+
+//get multiple guids
+jsguid(10, function (err, guids) {
+  if (err) {
+    console.log('BAD! ' + err);
+    return;
+  }
+
+  //guids returned as an array of strings
+  guids.forEach(function (guid) {
+    console.log(guid);
+  });
 });
 ```
 
@@ -27,6 +43,7 @@ jsguid(function (err, guid) {
 - `jake test` runs unit tests
 - `jake compile` compiles `lib/guidgen.cs`
 - `jake build` runs `test` and `compile`
+- `jake hint` runs `jshint`
 
 ## License ##
 
