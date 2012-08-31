@@ -1,7 +1,24 @@
 var path = require('path'),
-  exec = require('child_process').exec;
+  exec = require('child_process').exec,
+  os = require('os')
+  EOL = os.EOL || null,
+  PLATFORM = os.platform || null;
 
 var GUIDGEN = 'mono ' + path.join(__dirname, 'bin/guidgen.exe');
+
+function eol() {
+  if (EOL) {
+    return EOL;
+  }
+  switch(PLATFORM) {
+    case 'win32':
+      return '\r\n';
+    case 'darwin':
+    case 'linux':
+    default:
+      return '\n';
+  }
+}
 
 function checkArgs(howMany, callback) {
   if (isNaN(howMany)) {
@@ -36,7 +53,7 @@ module.exports = function (howMany, callback) {
       if (howMany === 1) {
         return callback(null, stdout.trim());
       }
-      callback(null, stdout.trim().split('\n'));
+      callback(null, stdout.trim().split(eol()));
     });
   });
 };
